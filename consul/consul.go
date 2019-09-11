@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-func Register(l log.Logger, addr string, port int, serviceName string) consul.Client {
+func Register(l log.Logger, addr string, port int, serviceName string) (*api.AgentServiceRegistration, consul.Client) {
 	consulConfig := api.DefaultConfig()
 	if len(addr) > 0 {
 		consulConfig.Address = addr
@@ -39,7 +39,7 @@ func Register(l log.Logger, addr string, port int, serviceName string) consul.Cl
 
 	// KV
 	kv(l, consulApi, addr, serviceName)
-	return consulClient
+	return registration, consulClient
 }
 
 func registration(port int, serverName string) *api.AgentServiceRegistration {
