@@ -2,7 +2,7 @@ package infra
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/nocai/infra/returncode"
+	"github.com/nocai/infra/returncoder"
 	"net/http"
 	"strconv"
 )
@@ -10,7 +10,7 @@ import (
 func RestfulID(req *http.Request) (uint64, error) {
 	ID, exist := mux.Vars(req)["ID"]
 	if !exist {
-		return 0, returncode.ErrBadRequest
+		return 0, returncoder.ErrBadRequest
 	}
 
 	return strconv.ParseUint(ID, 10, 64)

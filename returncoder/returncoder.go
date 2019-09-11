@@ -1,4 +1,4 @@
-package returncode
+package returncoder
 
 import (
 	"encoding/json"
